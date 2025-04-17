@@ -79,6 +79,12 @@ class ArtStudent : public Student
         void setArtEnfisis(std::string artEnfisis) { this->artEnfisis = artEnfisis; }
 };
 
+// Function to generate a random GPA between 0.0 and 4.0
+double generateRandomGPA()
+{
+    return static_cast<double>(rand()) / RAND_MAX * 4.0;
+}
+
 int main()
 {
     std::vector<std::unique_ptr<PhysicsStudent>> physicsStudents;
@@ -103,7 +109,7 @@ int main()
     // Generate random students
     physicsStudents[0]->setFirstName("John");
     physicsStudents[0]->setLastName("Doe");
-    physicsStudents[0]->setGPA(rand() % 100 / 10.0);
+    physicsStudents[0]->setGPA(generateRandomGPA());
     physicsStudents[0]->setAge(rand() % 10 + 20);
     physicsStudents[0]->setGradYear(rand() % 10 + 2023);
     physicsStudents[0]->setGradLevel(rand() % 3 + 1);
@@ -113,7 +119,7 @@ int main()
 
     physicsStudents[1]->setFirstName("Jane");
     physicsStudents[1]->setLastName("Smith");
-    physicsStudents[1]->setGPA(rand() % 100 / 10.0);
+    physicsStudents[1]->setGPA(generateRandomGPA());
     physicsStudents[1]->setAge(rand() % 10 + 20);
     physicsStudents[1]->setGradYear(rand() % 10 + 2023);
     physicsStudents[1]->setGradLevel(rand() % 3 + 1);
@@ -123,7 +129,7 @@ int main()
 
     physicsStudents[2]->setFirstName("Alice");
     physicsStudents[2]->setLastName("Johnson");
-    physicsStudents[2]->setGPA(rand() % 100 / 10.0);
+    physicsStudents[2]->setGPA(generateRandomGPA());
     physicsStudents[2]->setAge(rand() % 10 + 20);
     physicsStudents[2]->setGradYear(rand() % 10 + 2023);
     physicsStudents[2]->setGradLevel(rand() % 3 + 1);
@@ -133,7 +139,7 @@ int main()
 
     physicsStudents[3]->setFirstName("Bob");
     physicsStudents[3]->setLastName("Brown");
-    physicsStudents[3]->setGPA(rand() % 100 / 10.0);
+    physicsStudents[3]->setGPA(generateRandomGPA());
     physicsStudents[3]->setAge(rand() % 10 + 20);
     physicsStudents[3]->setGradYear(rand() % 10 + 2023);
     physicsStudents[3]->setGradLevel(rand() % 3 + 1);
@@ -143,7 +149,7 @@ int main()
 
     physicsStudents[4]->setFirstName("Charlie");
     physicsStudents[4]->setLastName("Davis");
-    physicsStudents[4]->setGPA(rand() % 100 / 10.0);
+    physicsStudents[4]->setGPA(generateRandomGPA());
     physicsStudents[4]->setAge(rand() % 10 + 20);
     physicsStudents[4]->setGradYear(rand() % 10 + 2023);
     physicsStudents[4]->setGradLevel(rand() % 3 + 1);
@@ -153,7 +159,7 @@ int main()
 
     artStudents[0]->setFirstName("Emily");
     artStudents[0]->setLastName("Clark");
-    artStudents[0]->setGPA(rand() % 100 / 10.0);
+    artStudents[0]->setGPA(generateRandomGPA());
     artStudents[0]->setAge(rand() % 10 + 20);
     artStudents[0]->setGradYear(rand() % 10 + 2023);
     artStudents[0]->setGradLevel(rand() % 3 + 1);
@@ -164,7 +170,7 @@ int main()
 
     artStudents[1]->setFirstName("David");
     artStudents[1]->setLastName("Wilson");
-    artStudents[1]->setGPA(rand() % 100 / 10.0);
+    artStudents[1]->setGPA(generateRandomGPA());
     artStudents[1]->setAge(rand() % 10 + 20);
     artStudents[1]->setGradYear(rand() % 10 + 2023);
     artStudents[1]->setGradLevel(rand() % 3 + 1);
@@ -175,7 +181,7 @@ int main()
 
     artStudents[2]->setFirstName("Sophia");
     artStudents[2]->setLastName("Garcia");
-    artStudents[2]->setGPA(rand() % 100 / 10.0);
+    artStudents[2]->setGPA(generateRandomGPA());
     artStudents[2]->setAge(rand() % 10 + 20);
     artStudents[2]->setGradYear(rand() % 10 + 2023);
     artStudents[2]->setGradLevel(rand() % 3 + 1);
@@ -186,7 +192,7 @@ int main()
 
     artStudents[3]->setFirstName("Michael");
     artStudents[3]->setLastName("Martinez");
-    artStudents[3]->setGPA(rand() % 100 / 10.0);
+    artStudents[3]->setGPA(generateRandomGPA());
     artStudents[3]->setAge(rand() % 10 + 20);
     artStudents[3]->setGradYear(rand() % 10 + 2023);
     artStudents[3]->setGradLevel(rand() % 3 + 1);
@@ -197,7 +203,7 @@ int main()
 
     artStudents[4]->setFirstName("Olivia");
     artStudents[4]->setLastName("Hernandez");
-    artStudents[4]->setGPA(rand() % 100 / 10.0);
+    artStudents[4]->setGPA(generateRandomGPA());
     artStudents[4]->setAge(rand() % 10 + 20);
     artStudents[4]->setGradYear(rand() % 10 + 2023);
     artStudents[4]->setGradLevel(rand() % 3 + 1);
@@ -206,48 +212,77 @@ int main()
     artStudents[4]->setArtStyle("Surrealism");
     artStudents[4]->setArtEnfisis("Concept Art");
 
+    double averagePhysGPA = 0.0;
+    double averageArtGPA = 0.0;
+    double totalGPA = 0.0;
+
+    // Calculate average GPA for Physics students
+    for (size_t i = 0; i < physicsStudents.size(); ++i)
+    {
+        averagePhysGPA += physicsStudents[i]->getGPA();
+    }
+    averagePhysGPA /= physicsStudents.size();
+
+    // Calculate average GPA for Art students
+    for (size_t i = 0; i < artStudents.size(); ++i)
+    {
+        averageArtGPA += artStudents[i]->getGPA();
+    }
+    averageArtGPA /= artStudents.size();
+
+    // Calculate total GPA
+    totalGPA = (averagePhysGPA + averageArtGPA) / 2.0;
+
     // Open a file to save the data
-    std::ofstream outFile("students_data.txt");
-    if (!outFile)
+    std::ofstream out("students_data.dat");
+    if (!out)
     {
         std::cerr << "Error: Could not open file for writing!" << std::endl;
         return 1;
     }
 
     // Write PhysicsStudent data to the file
-    outFile << "Physics Students:\n";
-    for (const auto& student : physicsStudents)
-    {
-        outFile << "Name: " << student->getFullName() << "\n";
-        outFile << "GPA: " << student->getGPA() << "\n";
-        outFile << "Age: " << student->getAge() << "\n";
-        outFile << "Graduation Year: " << student->getGradYear() << "\n";
-        outFile << "Graduation Level: " << student->getGradLevel() << "\n";
-        outFile << "Is Graduate: " << (student->getIsGraduate() ? "Yes" : "No") << "\n";
-        outFile << "Research Topic: " << student->getResearchTopic() << "\n";
-        outFile << "Concentration: " << student->getConcentration() << "\n";
-        outFile << "-----------------------------\n";
+    out << "============Physics Students:============\n";
+    for (size_t i = 0; i < physicsStudents.size(); ++i)
+    { 
+        out << "Name: " << physicsStudents[i]->getFullName() << "\n";
+        out << "GPA: " << physicsStudents[i]->getGPA() << "\n";
+        out << "Age: " << physicsStudents[i]->getAge() << "\n";
+        out << "Graduation Year: " << physicsStudents[i]->getGradYear() << "\n";
+        out << "Graduation Level: " << physicsStudents[i]->getGradLevel() << "\n";
+        out << "Is Graduate: " << (physicsStudents[i]->getIsGraduate() ? "Yes" : "No") << "\n";
+        out << "Research Topic: " << physicsStudents[i]->getResearchTopic() << "\n";
+        out << "Concentration: " << physicsStudents[i]->getConcentration() << "\n";
+        out << "-----------------------------\n";
     }
+    out << "=====================================\n";
+    out << "Average GPA for Physics Students: " << averagePhysGPA << "\n";
+    out << "=====================================\n";
 
     // Write ArtStudent data to the file
-    outFile << "\nArt Students:\n";
-    for (const auto& student : artStudents)
+    out << "\n============Art Students:============\n";
+    for (size_t i = 0; i < artStudents.size(); ++i)
     {
-        outFile << "Name: " << student->getFullName() << "\n";
-        outFile << "GPA: " << student->getGPA() << "\n";
-        outFile << "Age: " << student->getAge() << "\n";
-        outFile << "Graduation Year: " << student->getGradYear() << "\n";
-        outFile << "Graduation Level: " << student->getGradLevel() << "\n";
-        outFile << "Is Graduate: " << (student->getIsGraduate() ? "Yes" : "No") << "\n";
-        outFile << "Art Medium: " << student->getArtMedium() << "\n";
-        outFile << "Art Style: " << student->getArtStyle() << "\n";
-        outFile << "Art Enfisis: " << student->getArtEnfisis() << "\n";
-        outFile << "-----------------------------\n";
+        out << "Name: " << artStudents[i]->getFullName() << "\n";
+        out << "GPA: " << artStudents[i]->getGPA() << "\n";
+        out << "Age: " << artStudents[i]->getAge() << "\n";
+        out << "Graduation Year: " << artStudents[i]->getGradYear() << "\n";
+        out << "Graduation Level: " << artStudents[i]->getGradLevel() << "\n";
+        out << "Is Graduate: " << (artStudents[i]->getIsGraduate() ? "Yes" : "No") << "\n";
+        out << "Art Medium: " << artStudents[i]->getArtMedium() << "\n";
+        out << "Art Style: " << artStudents[i]->getArtStyle() << "\n";
+        out << "Art Enfisis: " << artStudents[i]->getArtEnfisis() << "\n";
+        out << "-----------------------------\n";
     }
+    out << "=====================================\n";
+    out << "Average GPA for Art Students: " << averageArtGPA << "\n";
+    out << "=====================================\n";
+    out << "Total GPA: " << totalGPA << "\n";
+    out << "=====================================\n";
 
-    outFile.close(); // Close the file
+    out.close(); // Close the file
 
-    std::cout << "Student data has been written to 'students_data.txt'." << std::endl;
+    std::cout << "Student data has been written to 'students_data.dat'." << std::endl;
 
 
     return 0;
